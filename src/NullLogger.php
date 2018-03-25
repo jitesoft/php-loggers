@@ -17,5 +17,8 @@ use Psr\Log\LoggerInterface;
 class NullLogger implements LoggerInterface {
     use LoggerPassThroughTrait;
 
-    public function log($level, $message, array $context = array()) { }
+    public function log($level, $message, array $context = array()) {
+
+    }
+
 }

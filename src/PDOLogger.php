@@ -47,7 +47,6 @@ class PDOLogger implements LoggerInterface {
         $this->pdo = $databaseConnection;
     }
 
-
     /**
      * Logs with an arbitrary level.
      *

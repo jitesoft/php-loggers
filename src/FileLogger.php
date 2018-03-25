@@ -55,4 +55,5 @@ class FileLogger implements LoggerInterface {
             ) . PHP_EOL, FILE_APPEND | LOCK_EX
         );
     }
+
 }

@@ -5,6 +5,7 @@
   © - Jitesoft 2018
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
+
 use function array_key_exists;
 use function in_array;
 use const PHP_EOL;
