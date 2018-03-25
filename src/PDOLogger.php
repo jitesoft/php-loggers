@@ -1,21 +1,45 @@
 <?php
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   DatabaseLogger.php - Part of the php-logger project.
 
   © - Jitesoft 2017
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
 namespace Jitesoft\Log;
 
+use Carbon\Carbon;
 use Jitesoft\Log\Traits\LoggerPassThroughTrait;
+use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use PDO;
 use Psr\Log\LoggerInterface;
 
-class DatabaseLogger implements LoggerInterface {
+/**
+ * A logger which outputs messages into a PDO instance using prepared statements.
+ *
+ * If the logger is used without changing the static $insert sql insert string to create logs, a table is required.
+ * The table (or insert command if changed) should contain the following columns:
+ * The default database table called is 'log_messages' but can be changed by changing the static $insert field.
+ *
+ * <pre>
+ * level   - varchar(255)
+ * message - text
+ * time    - datetime
+ * </pre>
+ *
+ * The insert call will use the following bound parameters:
+ *
+ * <pre>
+ * level   - string
+ * message - string
+ * time    - string
+ * </pre>
+ */
+class PDOLogger implements LoggerInterface {
     use TextFormatterTrait;
     use LoggerPassThroughTrait;
+    use LogLevelTrait;
+
+    public static $insert = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
 
     protected $pdo;
 
@@ -34,8 +58,19 @@ class DatabaseLogger implements LoggerInterface {
      * @return void
      */
     public function log($level, $message, array $context = array()) {
-        $this->pdo->
+        if (!$this->shouldLog($level)) {
+            return;
+        }
 
+        $message = $this->format($message, $context);
+        $time    = Carbon::now()->toIso8601String();
 
+        $stmt = $this->pdo->prepare(self::$insert);
+        $stmt->execute([
+            ':level'   => $level,
+            ':message' => $message,
+            ':time'    => $time
+        ]);
     }
+
 }
