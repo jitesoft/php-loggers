@@ -5,6 +5,8 @@
   © - Jitesoft 2018
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
+use function array_key_exists;
+use function in_array;
 use const PHP_EOL;
 
 /**
@@ -47,6 +49,10 @@ trait LogLevelTrait {
      * @return bool
      */
     protected function shouldLog(string $level) {
+        if (!array_key_exists($level, $this->logLevels)) {
+            return true; // For custom log levels.
+        }
+
         $level = $this->logLevels[$level];
         return ($level >= $this->logLevel);
     }
