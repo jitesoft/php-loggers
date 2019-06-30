@@ -4,7 +4,6 @@ include:
 
 stages:
   - test
-  - scan
 
 build:
   stage: test
@@ -14,8 +13,3 @@ build:
     - vendor/bin/phpunit tests/ --coverage-text --colors=never --whitelist=src/
     - vendor/bin/phpcs -p ./src --report=summary --standard=./style.xml
 
-scan:dep:
-  extends: .dependency_scanning
-
-scan:code:
-  extends: .code_quality
