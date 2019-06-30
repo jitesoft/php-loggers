@@ -24,11 +24,12 @@ class FileLogger implements LoggerInterface {
     public static $format     = '[%s] %s: %s';
     public static $timeFormat = 'H:i:s.v';
 
+    /** @var string */
     private $file;
 
     /**
      * FileLogger constructor.
-     * @param string $file
+     * @param string $file File to log to.
      */
     public function __construct(string $file = '/tmp/log.txt') {
         $this->file = $file;
@@ -37,12 +38,12 @@ class FileLogger implements LoggerInterface {
     /**
      * Logs with an arbitrary level.
      *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
-     *
+     * @param mixed  $level   Log level to use.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
      * @return void
      */
+    //phpcs:ignore Squiz.Commenting.FunctionComment
     public function log($level, $message, array $context = array()) {
         if (!$this->shouldLog($level)) {
             return;
@@ -50,7 +51,12 @@ class FileLogger implements LoggerInterface {
 
         file_put_contents($this->file,
             $this->format(
-                sprintf(self::$format, Carbon::now()->format(self::$timeFormat), strtoupper($level), $message),
+                sprintf(
+                    self::$format,
+                    Carbon::now()->format(self::$timeFormat),
+                    strtoupper($level),
+                    $message
+                ),
                 $context
             ) . PHP_EOL, FILE_APPEND | LOCK_EX
         );

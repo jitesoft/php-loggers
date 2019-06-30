@@ -39,10 +39,16 @@ class PDOLogger implements LoggerInterface {
     use LoggerPassThroughTrait;
     use LogLevelTrait;
 
+    // phpcs:ignore
     public static $insert = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
 
     protected $pdo;
 
+    /**
+     * PDOLogger constructor.
+     *
+     * @param PDO $databaseConnection PDO Connection.
+     */
     public function __construct(PDO $databaseConnection) {
         $this->pdo = $databaseConnection;
     }
@@ -50,12 +56,13 @@ class PDOLogger implements LoggerInterface {
     /**
      * Logs with an arbitrary level.
      *
-     * @param mixed $level
-     * @param string $message
-     * @param array $context
+     * @param mixed  $level   Log level to use.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
      *
      * @return void
      */
+    // phpcs:ignore Squiz.Commenting.FunctionComment
     public function log($level, $message, array $context = array()) {
         if (!$this->shouldLog($level)) {
             return;
@@ -64,8 +71,7 @@ class PDOLogger implements LoggerInterface {
         $message = $this->format($message, $context);
         $time    = Carbon::now()->toIso8601String();
 
-        $stmt = $this->pdo->prepare(self::$insert);
-        $stmt->execute([
+        $this->pdo->prepare(self::$insert)->execute([
             ':level'   => $level,
             ':message' => $message,
             ':time'    => $time

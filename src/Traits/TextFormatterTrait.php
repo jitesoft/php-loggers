@@ -14,14 +14,25 @@ namespace Jitesoft\Log\Traits;
  */
 trait TextFormatterTrait {
 
+    /**
+     * Replaces placeholders with context values.
+     *
+     * @param string $message Message to format.
+     * @param array  $context Context data.
+     * @return string
+     */
     protected function format(string $message, array $context = []): string {
         $out = [];
         preg_match_all('/{(.*?)}/s', $message, $out);
 
         $count = count($out[1]);
-        for ($i=0;$i<$count;$i++) {
+        for ($i = 0;$i < $count;$i++) {
             if (array_key_exists($out[1][$i], $context)) {
-                $message = str_replace($out[0][$i], $context[$out[1][$i]], $message);
+                $message = str_replace(
+                    $out[0][$i],
+                    $context[$out[1][$i]],
+                    $message
+                );
             }
         }
 

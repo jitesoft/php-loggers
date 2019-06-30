@@ -17,8 +17,15 @@ use Psr\Log\LoggerInterface;
 class NullLogger implements LoggerInterface {
     use LoggerPassThroughTrait;
 
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed $level Log level of message.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
+     */
+    // phpcs:ignore Squiz.Commenting.FunctionComment
     public function log($level, $message, array $context = array()) {
-
     }
 
 }

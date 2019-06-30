@@ -7,8 +7,6 @@
 namespace Jitesoft\Log\Traits;
 
 use function array_key_exists;
-use function in_array;
-use const PHP_EOL;
 
 /**
  * LogLevelTrait
@@ -37,7 +35,8 @@ trait LogLevelTrait {
      * Available levels:
      * debug, notice, info, warning, error, critical, alert, emergency
      *
-     * @param string $level
+     * @param string $level Level to use.
+     * @return void
      */
     public function setLogLevel(string $level) {
         $this->logLevel = $this->logLevels[$level];
@@ -46,8 +45,8 @@ trait LogLevelTrait {
     /**
      * Test if the logger should actually log the message due to its level.
      *
-     * @param string $level
-     * @return bool
+     * @param string $level Level to test.
+     * @return boolean
      */
     protected function shouldLog(string $level) {
         if (!array_key_exists($level, $this->logLevels)) {

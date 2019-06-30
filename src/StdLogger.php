@@ -27,19 +27,28 @@ class StdLogger implements LoggerInterface {
     /**
      * Logs with an arbitrary level.
      *
-     * @param string $level
-     * @param string $message
-     * @param array $context
+     * @param string $level   Log level to use.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
      *
      * @return void
      */
+    // phpcs:ignore Squiz.Commenting.FunctionComment
     public function log($level, $message, array $context = array()) {
         if (!$this->shouldLog($level)) {
             return;
         }
 
         $handle = null;
-        if (in_array($level, [LogLevel::EMERGENCY, LogLevel::CRITICAL, LogLevel::ALERT, LogLevel::ERROR])) {
+        if (in_array(
+            $level,
+            [
+                LogLevel::EMERGENCY,
+                LogLevel::CRITICAL,
+                LogLevel::ALERT,
+                LogLevel::ERROR
+            ])
+        ) {
             $handle = STDERR;
         } else {
             $handle = STDOUT;
@@ -47,7 +56,12 @@ class StdLogger implements LoggerInterface {
 
         fwrite($handle,
             $this->format(
-                sprintf(self::$format, Carbon::now()->format(self::$timeFormat), strtoupper($level), $message),
+                sprintf(
+                    self::$format,
+                    Carbon::now()->format(self::$timeFormat),
+                    strtoupper($level),
+                    $message
+                ),
                 $context
             )
         );

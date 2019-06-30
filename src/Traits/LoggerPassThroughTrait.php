@@ -13,16 +13,17 @@ use Psr\Log\LogLevel;
  * @package Jitesoft\Log\Traits
  */
 trait LoggerPassThroughTrait {
+// phpcs:disable Squiz.Commenting.FunctionComment
 
     /**
      * System is unusable.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Message context data.
      *
      * @return void
      */
-    public function emergency($message, array $context = array()) {
+    public function emergency($message, array $context = array()): void {
         $this->log(LogLevel::EMERGENCY, $message, $context);
     }
 
@@ -32,8 +33,8 @@ trait LoggerPassThroughTrait {
      * Example: Entire website down, database unavailable, etc. This should
      * trigger the SMS alerts and wake you up.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -46,8 +47,8 @@ trait LoggerPassThroughTrait {
      *
      * Example: Application component unavailable, unexpected exception.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -59,8 +60,8 @@ trait LoggerPassThroughTrait {
      * Runtime errors that do not require immediate action but should typically
      * be logged and monitored.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -74,8 +75,8 @@ trait LoggerPassThroughTrait {
      * Example: Use of deprecated APIs, poor use of an API, undesirable things
      * that are not necessarily wrong.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -86,8 +87,8 @@ trait LoggerPassThroughTrait {
     /**
      * Normal but significant events.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -100,8 +101,8 @@ trait LoggerPassThroughTrait {
      *
      * Example: User logs in, SQL logs.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -112,8 +113,8 @@ trait LoggerPassThroughTrait {
     /**
      * Detailed debug information.
      *
-     * @param string $message
-     * @param array $context
+     * @param string $message Message to write.
+     * @param array  $context Context data.
      *
      * @return void
      */
@@ -121,4 +122,5 @@ trait LoggerPassThroughTrait {
         $this->log(LogLevel::DEBUG, $message, $context);
     }
 
+// phpcs:enable
 }
