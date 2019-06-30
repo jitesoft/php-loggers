@@ -1,16 +1,16 @@
 language: php
 
 php:
-  - 7.2
+  - "7.1"
+  - "7.2"
+  - "7.3"
+  - "7.4"
 install:
   - composer install --prefer-source --no-interaction --dev
 script:
   - composer dump-autoload
   - ./vendor/bin/phpunit tests/ --coverage-clover clover.xml --whitelist=src/
-  - ./vendor/bin/phpcs -p ./src --report=summary --standard=./ruleset.xml
-notifications:
-  - on_success: never
-  - on_failure: always
+  - ./vendor/bin/phpcs -p ./src --report=summary --standard=./style.xml
 git:
   depth: 1
 after_success:
