@@ -23,7 +23,7 @@ class PDOLoggerTest extends TestCase {
     /** @var PDO */
     protected $db;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
         Carbon::setTestNow(Carbon::createFromTimestamp(1513976746099));
         $this->db = new PDO('sqlite::memory:');

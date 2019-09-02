@@ -19,7 +19,7 @@ class StdLoggerTest extends TestCase {
     protected $expectedFormat     = "[%s] %s: %s";
     protected $expectedTimeFormat ='H:i:s.v';
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
         stream_filter_register('catcher', StreamFilter::class);
         Carbon::setTestNow(Carbon::createFromTimestamp(1513976746099));

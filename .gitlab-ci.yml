@@ -1,15 +1,15 @@
 include:
-  - template: Dependency-Scanning.gitlab-ci.yml
-  - template: SAST.gitlab-ci.yml
+  - https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/dependency_scanning.yml
 
 stages:
   - test
 
-build:
+test:
   stage: test
-  image: jitesoft/composer
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.2
   script:
     - composer install --prefer-dist --no-progress
-    - vendor/bin/phpunit tests/ --coverage-text --colors=never --whitelist=src/
-    - vendor/bin/phpcs -p ./src --report=summary --standard=./style.xml
+    - composer test
 
+scan:
+  extends: .dependency_scan:composer

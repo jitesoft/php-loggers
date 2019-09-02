@@ -21,7 +21,7 @@ class LogLevelTraitTest extends TestCase {
     protected $testLogger;
     protected $logLevel = [ 'debug', 'notice', 'info', 'warning', 'error', 'critical', 'alert', 'emergency' ];
 
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $loggerClass = new class {
             use LogLevelTrait;

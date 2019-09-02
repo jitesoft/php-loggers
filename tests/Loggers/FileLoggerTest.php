@@ -21,7 +21,7 @@ class FileLoggerTest extends TestCase {
     protected $expectedFormat     = "[%s] %s: %s";
     protected $expectedTimeFormat ='H:i:s.v';
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
 
         $this->fs = vfsStream::setUp('rootDir');

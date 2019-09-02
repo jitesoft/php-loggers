@@ -18,7 +18,7 @@ class LogFormatterTraitTest extends TestCase {
 
     protected $testLogger;
 
-    protected function setUp() {
+    protected function setUp(): void {
         parent::setUp();
 
         $loggerClass = new class {
