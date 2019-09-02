@@ -4,13 +4,13 @@
     "type": "library",
     "require": {
         "psr/log": "^1.1.0",
-        "nesbot/carbon": "^2.9.1",
+        "nesbot/carbon": "^2.24.0",
         "php": "^7.2"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "^3.2",
-        "phpunit/phpunit": "^6.5",
-        "mikey179/vfsStream": "^1.6"
+        "squizlabs/php_codesniffer": "^3.4.2",
+        "phpunit/phpunit": "^8.3.4",
+        "mikey179/vfsStream": "^1.6.7"
     },
     "license": "MIT",
     "authors": [
@@ -30,6 +30,12 @@
         },
         "files": [
             "tests/StreamFilter.php"
+        ]
+    },
+    "scripts": {
+        "test": [
+            "phpunit --configuration ./phpunit.xml --coverage-text --colors=never",
+            "phpcs --report=summary --standard=./ruleset.xml -p ./src"
         ]
     }
 }
