@@ -21,7 +21,9 @@ class FileLogger implements LoggerInterface {
     use LoggerPassThroughTrait;
     use LogLevelTrait;
 
-    public static $format     = '[%s] %s: %s';
+    /** @var string */
+    public static $format = '[%s] %s: %s';
+    /** @var string */
     public static $timeFormat = 'H:i:s.v';
 
     /** @var string */
@@ -49,7 +51,8 @@ class FileLogger implements LoggerInterface {
             return;
         }
 
-        file_put_contents($this->file,
+        file_put_contents(
+            $this->file,
             $this->format(
                 sprintf(
                     self::$format,

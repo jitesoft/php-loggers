@@ -21,7 +21,9 @@ class StdLogger implements LoggerInterface {
     use LoggerPassThroughTrait;
     use LogLevelTrait;
 
-    public static $format     = '[%s] %s: %s';
+    /** @var string */
+    public static $format = '[%s] %s: %s';
+    /** @var string */
     public static $timeFormat = 'H:i:s.v';
 
     /**
@@ -47,14 +49,16 @@ class StdLogger implements LoggerInterface {
                 LogLevel::CRITICAL,
                 LogLevel::ALERT,
                 LogLevel::ERROR
-            ])
+            ]
+        )
         ) {
             $handle = STDERR;
         } else {
             $handle = STDOUT;
         }
 
-        fwrite($handle,
+        fwrite(
+            $handle,
             $this->format(
                 sprintf(
                     self::$format,

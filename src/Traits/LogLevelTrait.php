@@ -15,6 +15,7 @@ use function array_key_exists;
  */
 trait LogLevelTrait {
 
+    /** @var array */
     protected $logLevels = [
         'debug'     => 0,
         'notice'    => 1,
@@ -26,6 +27,7 @@ trait LogLevelTrait {
         'emergency' => 7
     ];
 
+    /** @var integer */
     protected $logLevel = 0;
 
     /**

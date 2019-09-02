@@ -42,6 +42,7 @@ class PDOLogger implements LoggerInterface {
     // phpcs:ignore
     public static $insert = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
 
+    /** @var PDO */
     protected $pdo;
 
     /**
@@ -71,11 +72,13 @@ class PDOLogger implements LoggerInterface {
         $message = $this->format($message, $context);
         $time    = Carbon::now()->toIso8601String();
 
-        $this->pdo->prepare(self::$insert)->execute([
-            ':level'   => $level,
-            ':message' => $message,
-            ':time'    => $time
-        ]);
+        $this->pdo->prepare(self::$insert)->execute(
+            [
+                ':level'   => $level,
+                ':message' => $message,
+                ':time'    => $time
+            ]
+        );
     }
 
 }
