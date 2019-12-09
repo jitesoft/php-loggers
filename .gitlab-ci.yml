@@ -3,13 +3,28 @@ include:
 
 stages:
   - test
+  - scan
 
-test:
+test:7.2:
   stage: test
   image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.2
   script:
     - composer install --prefer-dist --no-progress
     - composer test
 
+test:7.3:
+  stage: test
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.3
+  script:
+    - composer install --prefer-dist --no-progress
+    - composer test
+
+test:7.4:
+  stage: test
+  image: registry.gitlab.com/jitesoft/dockerfiles/phpunit:7.4
+  script:
+    - composer install --prefer-dist --no-progress
+    - composer test
+
 scan:
-  extends: .dependency_scan:composer
+  extends: .scan:composer
