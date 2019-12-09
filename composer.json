@@ -3,8 +3,8 @@
     "description": "A collection of PSR-3 loggers.",
     "type": "library",
     "require": {
-        "psr/log": "^1.1.0",
-        "nesbot/carbon": "^2.24.0",
+        "psr/log": "^1.1.2",
+        "nesbot/carbon": "^2.27.0",
         "php": "^7.2"
     },
     "require-dev": {
