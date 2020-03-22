@@ -1,12 +1,11 @@
 <?php
+declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   LogLevelTrait.php - Part of the Loggers project.
 
-  © - Jitesoft 2018
+  © - Jitesoft 2020
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
-
-use function array_key_exists;
 
 /**
  * LogLevelTrait
@@ -14,9 +13,8 @@ use function array_key_exists;
  * @version 1.0.0
  */
 trait LogLevelTrait {
-
-    /** @var array */
-    protected $logLevels = [
+    protected int $logLevel    = 0;
+    protected array $logLevels = [
         'debug'     => 0,
         'notice'    => 1,
         'info'      => 2,
@@ -26,9 +24,6 @@ trait LogLevelTrait {
         'alert'     => 6,
         'emergency' => 7
     ];
-
-    /** @var integer */
-    protected $logLevel = 0;
 
     /**
      * Set the log level of the logger.
@@ -40,7 +35,7 @@ trait LogLevelTrait {
      * @param string $level Level to use.
      * @return void
      */
-    public function setLogLevel(string $level) {
+    public function setLogLevel(string $level): void {
         $this->logLevel = $this->logLevels[$level];
     }
 
@@ -50,7 +45,7 @@ trait LogLevelTrait {
      * @param string $level Level to test.
      * @return boolean
      */
-    protected function shouldLog(string $level) {
+    protected function shouldLog(string $level): bool {
         if (!array_key_exists($level, $this->logLevels)) {
             return true; // For custom log levels.
         }
