@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   FileLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2017
+  © - Jitesoft 2020
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
@@ -21,13 +22,10 @@ class FileLogger implements LoggerInterface {
     use LoggerTrait;
     use LogLevelTrait;
 
-    /** @var string */
-    public static $format = '[%s] %s: %s';
-    /** @var string */
-    public static $timeFormat = 'H:i:s.v';
+    public const FORMAT      = '[%s] %s: %s';
+    public const TIME_FORMAT = 'H:i:s.v';
 
-    /** @var string */
-    private $file;
+    private string $file;
 
     /**
      * FileLogger constructor.
@@ -55,8 +53,8 @@ class FileLogger implements LoggerInterface {
             $this->file,
             $this->format(
                 sprintf(
-                    self::$format,
-                    Carbon::now()->format(self::$timeFormat),
+                    self::FORMAT,
+                    Carbon::now()->format(self::TIME_FORMAT),
                     strtoupper($level),
                     $message
                 ),

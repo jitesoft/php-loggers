@@ -1,4 +1,10 @@
 <?php
+declare(strict_types=1);
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  SysLogLogger.php - Part of the php-logger project.
+
+  © - Jitesoft 2020
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
 use Jitesoft\Log\Traits\LogLevelTrait;
@@ -11,8 +17,7 @@ class SysLogLogger implements LoggerInterface {
     use LoggerTrait;
     use LogLevelTrait;
 
-    /** @var array LogPriorities map. */
-    private static $logPriorities = [
+    private const LOG_PRIORITIES = [
         'debug'     => LOG_DEBUG,
         'notice'    => LOG_NOTICE,
         'info'      => LOG_INFO,
@@ -53,8 +58,8 @@ class SysLogLogger implements LoggerInterface {
      * @return void
      */
     // phpcs:ignore Squiz.Commenting.FunctionComment
-    public function log($level, $message, array $context = array()) {
-        syslog(self::$logPriorities[$level], $this->format($message, $context));
+    public function log($level, $message, array $context = array()): void {
+        syslog(self::LOG_PRIORITIES[$level], $this->format($message, $context));
     }
 
 }

@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   TextFormatterTrait.php - Part of the php-logger project.
 
-  © - Jitesoft 2017
+  © - Jitesoft 2020
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
 

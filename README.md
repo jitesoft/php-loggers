@@ -7,3 +7,6 @@
 
 This repository contains a set of loggers implementing the PSR-3 logger interface.  
 Pull-requests and feature requests welcome.
+
+For usage with PHP versions under 7.4, please use the 1.x tags (or php-7.2 branch). All version 2+ builds are using PHP
+7.4 features and hence requires php 7.4 or higher.
