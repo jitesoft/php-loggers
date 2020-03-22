@@ -55,7 +55,9 @@ class SysLogLogger implements LoggerInterface {
      *
      * @return void
      */
-    public function log($level, $message, array $context = array()): void {
+    protected function innerLog(string $level,
+                                string $message,
+                                array $context = array()): void {
         syslog(self::LOG_PRIORITIES[$level], $this->format($message, $context));
     }
 

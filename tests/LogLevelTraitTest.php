@@ -29,6 +29,7 @@ class LogLevelTraitTest extends TestCase {
             public function callShouldLog($level) {
                 return $this->shouldLog($level);
             }
+            protected function innerLog(string $level, string $message, array $context): void {}
         };
 
         $this->testLogger = new $loggerClass();

@@ -61,12 +61,9 @@ class PDOLogger implements LoggerInterface {
      *
      * @return void
      */
-    // phpcs:ignore Squiz.Commenting.FunctionComment
-    public function log($level, $message, array $context = array()) {
-        if (!$this->shouldLog($level)) {
-            return;
-        }
-
+    protected function innerLog(string $level,
+                                string $message,
+                                array $context = array()): void {
         $message = $this->format($message, $context);
         $time    = Carbon::now()->toIso8601String();
 
