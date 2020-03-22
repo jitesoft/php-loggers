@@ -18,9 +18,7 @@ use Psr\Log\LoggerTrait;
  * The logger uses the LOCK_EX flag upon writing to file.
  */
 class FileLogger implements LoggerInterface {
-    use TextFormatterTrait;
-    use LoggerTrait;
-    use LogLevelTrait;
+    use TextFormatterTrait, LoggerTrait, LogLevelTrait;
 
     public const FORMAT      = '[%s] %s: %s';
     public const TIME_FORMAT = 'H:i:s.v';
@@ -43,8 +41,7 @@ class FileLogger implements LoggerInterface {
      * @param array  $context Context data.
      * @return void
      */
-    //phpcs:ignore Squiz.Commenting.FunctionComment
-    public function log($level, $message, array $context = array()) {
+    public function log($level, $message, array $context = array()): void {
         if (!$this->shouldLog($level)) {
             return;
         }

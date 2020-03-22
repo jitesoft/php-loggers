@@ -18,9 +18,7 @@ use Psr\Log\LogLevel;
  * A logger which outputs messages to stdout and stderr.
  */
 class StdLogger implements LoggerInterface {
-    use TextFormatterTrait;
-    use LoggerTrait;
-    use LogLevelTrait;
+    use TextFormatterTrait, LoggerTrait, LogLevelTrait;
 
     public const FORMAT      = '[%s] %s: %s';
     public const TIME_FORMAT = 'H:i:s.v';
