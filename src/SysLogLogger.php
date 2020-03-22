@@ -13,9 +13,7 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\LoggerTrait;
 
 class SysLogLogger implements LoggerInterface {
-    use TextFormatterTrait;
-    use LoggerTrait;
-    use LogLevelTrait;
+    use TextFormatterTrait, LoggerTrait, LogLevelTrait;
 
     private const LOG_PRIORITIES = [
         'debug'     => LOG_DEBUG,
@@ -57,7 +55,6 @@ class SysLogLogger implements LoggerInterface {
      *
      * @return void
      */
-    // phpcs:ignore Squiz.Commenting.FunctionComment
     public function log($level, $message, array $context = array()): void {
         syslog(self::LOG_PRIORITIES[$level], $this->format($message, $context));
     }
