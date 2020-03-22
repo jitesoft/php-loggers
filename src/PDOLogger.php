@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   DatabaseLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2017
+  © - Jitesoft 2020
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
@@ -40,10 +41,9 @@ class PDOLogger implements LoggerInterface {
     use LogLevelTrait;
 
     // phpcs:ignore
-    public static $insert = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
+    public const INSERT_STATEMENT = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
 
-    /** @var PDO */
-    protected $pdo;
+    protected PDO $pdo;
 
     /**
      * PDOLogger constructor.
@@ -72,7 +72,7 @@ class PDOLogger implements LoggerInterface {
         $message = $this->format($message, $context);
         $time    = Carbon::now()->toIso8601String();
 
-        $this->pdo->prepare(self::$insert)->execute(
+        $this->pdo->prepare(self::INSERT_STATEMENT)->execute(
             [
                 ':level'   => $level,
                 ':message' => $message,

@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   StdLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2017
+  © - Jitesoft 2020
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
@@ -21,10 +22,8 @@ class StdLogger implements LoggerInterface {
     use LoggerTrait;
     use LogLevelTrait;
 
-    /** @var string */
-    public static $format = '[%s] %s: %s';
-    /** @var string */
-    public static $timeFormat = 'H:i:s.v';
+    public const FORMAT      = '[%s] %s: %s';
+    public const TIME_FORMAT = 'H:i:s.v';
 
     /**
      * Logs with an arbitrary level.
@@ -36,7 +35,7 @@ class StdLogger implements LoggerInterface {
      * @return void
      */
     // phpcs:ignore Squiz.Commenting.FunctionComment
-    public function log($level, $message, array $context = array()) {
+    public function log($level, $message, array $context = array()): void {
         if (!$this->shouldLog($level)) {
             return;
         }
@@ -49,7 +48,8 @@ class StdLogger implements LoggerInterface {
                 LogLevel::CRITICAL,
                 LogLevel::ALERT,
                 LogLevel::ERROR
-            ]
+            ],
+            true
         )
         ) {
             $handle = STDERR;
@@ -61,8 +61,8 @@ class StdLogger implements LoggerInterface {
             $handle,
             $this->format(
                 sprintf(
-                    self::$format,
-                    Carbon::now()->format(self::$timeFormat),
+                    self::FORMAT,
+                    Carbon::now()->format(self::TIME_FORMAT),
                     strtoupper($level),
                     $message
                 ),
