@@ -29,7 +29,7 @@ class FileLoggerTest extends TestCase {
         $this->logger = new FileLogger($this->fs->url() . '/log.txt');
     }
 
-    public function testLog() {
+    public function testLog(): void {
         $this->logger->log(
             'TestLevel',
             'Test {with} some {params}. And {nothing}!',
