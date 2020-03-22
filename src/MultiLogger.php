@@ -1,5 +1,10 @@
 <?php
+declare(strict_types=1);
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+  MultiLogger.php - Part of the php-logger project.
 
+  © - Jitesoft 2020
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
 use Jitesoft\Log\Traits\LogLevelTrait;
@@ -55,7 +60,9 @@ class MultiLogger implements LoggerInterface {
      *
      * @return void
      */
-    public function log($level, $message, array $context = array()): void {
+    protected function innerLog(string $level,
+                                string $message,
+                                array $context = array()): void {
         foreach ($this->loggers as $logger) {
             $logger->log($level, $message, $context);
         }

@@ -20,7 +20,6 @@ class CallbackLoggerTest extends TestCase {
         $data = [];
         (new CallbackLogger(
             static function (...$args) use(&$data) {
-
                 $data = $args;
             }
         ))->log(
