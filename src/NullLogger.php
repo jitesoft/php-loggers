@@ -24,9 +24,10 @@ class NullLogger implements LoggerInterface {
      * @param mixed $level Log level of message.
      * @param string $message Message to log.
      * @param array  $context Context data.
+     *
+     * @return void
      */
-    // phpcs:ignore Squiz.Commenting.FunctionComment
-    public function log($level, $message, array $context = array()) {
+    public function log($level, $message, array $context = array()): void {
     }
 
 }

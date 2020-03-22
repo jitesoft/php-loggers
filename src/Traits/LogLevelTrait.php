@@ -54,4 +54,35 @@ trait LogLevelTrait {
         return ($level >= $this->logLevel);
     }
 
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed  $level   Log level to use.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
+     *
+     * @return void
+     */
+    public function log($level, $message, array $context = array()): void {
+        if (!$this->shouldLog($level)) {
+            return;
+        }
+        $this->innerLog($level, $message, $context);
+    }
+
+    /**
+     * Logs with an arbitrary level.
+     *
+     * @param mixed  $level   Log level to use.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
+     *
+     * @return void
+     */
+    abstract protected function innerLog(
+        string $level,
+        string $message,
+        array $context
+    ): void;
+
 }

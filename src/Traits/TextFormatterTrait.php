@@ -20,6 +20,7 @@ trait TextFormatterTrait {
      *
      * @param string $message Message to format.
      * @param array  $context Context data.
+     *
      * @return string
      */
     protected function format(string $message, array $context = []): string {
