@@ -6,8 +6,8 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
-use Jitesoft\Log\Traits\LoggerPassThroughTrait;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerTrait;
 
 /**
  * A logger doing absolutely nothing, and its not even supposed to!
@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
  * @codeCoverageIgnore
  */
 class NullLogger implements LoggerInterface {
-    use LoggerPassThroughTrait;
+    use LoggerTrait;
 
     /**
      * Logs with an arbitrary level.

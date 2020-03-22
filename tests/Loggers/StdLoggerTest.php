@@ -26,7 +26,7 @@ class StdLoggerTest extends TestCase {
         $this->logger = new StdLogger();
     }
 
-    public function testLog() {
+    public function testLog(): void {
         stream_filter_prepend(STDOUT, 'catcher');
         $this->logger->log(
             'TestLevel',

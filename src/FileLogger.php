@@ -7,10 +7,10 @@
 namespace Jitesoft\Log;
 
 use Carbon\Carbon;
-use Jitesoft\Log\Traits\LoggerPassThroughTrait;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerTrait;
 
 /**
  * A Logger which writes its output to a file.
@@ -18,7 +18,7 @@ use Psr\Log\LoggerInterface;
  */
 class FileLogger implements LoggerInterface {
     use TextFormatterTrait;
-    use LoggerPassThroughTrait;
+    use LoggerTrait;
     use LogLevelTrait;
 
     /** @var string */

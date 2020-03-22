@@ -32,7 +32,7 @@ class LogFormatterTraitTest extends TestCase {
         $this->testLogger = new $loggerClass();
     }
 
-    public function testFormatterPlaceholders() {
+    public function testFormatterPlaceholders(): void {
         $msg = $this->testLogger->callFormat(
             'Test {with} some {params}. And {nothing}!',
             [ 'with' => 'without', 'params' => 'words']
