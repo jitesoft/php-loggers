@@ -7,10 +7,10 @@
 namespace Jitesoft\Log;
 
 use Carbon\Carbon;
-use Jitesoft\Log\Traits\LoggerPassThroughTrait;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerTrait;
 use Psr\Log\LogLevel;
 
 /**
@@ -18,7 +18,7 @@ use Psr\Log\LogLevel;
  */
 class StdLogger implements LoggerInterface {
     use TextFormatterTrait;
-    use LoggerPassThroughTrait;
+    use LoggerTrait;
     use LogLevelTrait;
 
     /** @var string */

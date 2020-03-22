@@ -34,35 +34,35 @@ class LogLevelTraitTest extends TestCase {
         $this->testLogger = new $loggerClass();
     }
 
-    public function testDebug() {
+    public function testDebug(): void {
         $this->runIt(0);
     }
 
-    public function testNotice() {
+    public function testNotice(): void {
         $this->runIt(1);
     }
 
-    public function testInfo() {
+    public function testInfo(): void {
         $this->runIt(2);
     }
 
-    public function testWarning() {
+    public function testWarning(): void {
         $this->runIt(3);
     }
 
-    public function testError() {
+    public function testError(): void {
         $this->runIt(4);
     }
 
-    public function testCritical() {
+    public function testCritical(): void {
         $this->runIt(5);
     }
 
-    public function testAlert() {
+    public function testAlert(): void {
         $this->runIt(6);
     }
 
-    public function testEmergency() {
+    public function testEmergency(): void {
         $this->runIt(7);
     }
 

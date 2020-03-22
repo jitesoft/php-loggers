@@ -7,11 +7,11 @@
 namespace Jitesoft\Log;
 
 use Carbon\Carbon;
-use Jitesoft\Log\Traits\LoggerPassThroughTrait;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use PDO;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LoggerTrait;
 
 /**
  * A logger which outputs messages into a PDO instance using prepared statements.
@@ -36,7 +36,7 @@ use Psr\Log\LoggerInterface;
  */
 class PDOLogger implements LoggerInterface {
     use TextFormatterTrait;
-    use LoggerPassThroughTrait;
+    use LoggerTrait;
     use LogLevelTrait;
 
     // phpcs:ignore
