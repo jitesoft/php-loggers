@@ -36,9 +36,7 @@ use Psr\Log\LoggerTrait;
  * </pre>
  */
 class PDOLogger implements LoggerInterface {
-    use TextFormatterTrait;
-    use LoggerTrait;
-    use LogLevelTrait;
+    use TextFormatterTrait, LoggerTrait, LogLevelTrait;
 
     // phpcs:ignore
     public const INSERT_STATEMENT = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
