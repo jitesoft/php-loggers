@@ -1,15 +1,3 @@
 include:
-  - remote: https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/Scan/php.yml
-  - remote: https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/php_common.yml
-  - remote: https://gitlab.com/jitesoft/gitlab-ci-lib/raw/master/license_management.yml
-  - template: SAST.gitlab-ci.yml
-
-stages:
-  - test
-  - scan
-
-test:
-  extends: .php:test:unit
-
-sniff:
-  extends: .php:test:sniff
+  - file: /php/auto.yml
+    project: jitesoft/gitlab-ci-lib
