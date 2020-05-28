@@ -1,16 +1,7 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  StreamFilter.php - Part of the php-logger project.
-
-  © - Jitesoft 2017
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// phpcs:ignoreFile -- Test file
 namespace Jitesoft\Log\Tests;
 
-/**
- * Class StreamFilter
- *
- * Filter used in tests to eat the stdout/stderr output and store value in a static field.
- */
 class StreamFilter extends \php_user_filter {
 
     public static $output;
