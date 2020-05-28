@@ -1,9 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  FileLoggerTest.php - Part of the php-logger project.
-
-  © - Jitesoft 2017
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// phpcs:ignoreFile -- Test file
 namespace Jitesoft\Log\Tests\Loggers;
 
 use Carbon\Carbon;

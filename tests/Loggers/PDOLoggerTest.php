@@ -1,9 +1,5 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  PDOLoggerTest.php - Part of the Jitesoft\Log\Tests\.Loggers project.
-
-  © - Jitesoft 2018
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// phpcs:ignoreFile -- Test file
 namespace Jitesoft\Log\Tests\Loggers;
 
 use Carbon\Carbon;
@@ -11,11 +7,6 @@ use Jitesoft\Log\PDOLogger;
 use PDO;
 use PHPUnit\Framework\TestCase;
 
-/**
- * PDOLoggerTest
- * @author Johannes Tegnér <johannes@jitesoft.com>
- * @version 1.0.0
- */
 class PDOLoggerTest extends TestCase {
 
     /** @var PDOLogger */

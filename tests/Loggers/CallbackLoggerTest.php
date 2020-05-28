@@ -1,5 +1,5 @@
 <?php
-
+// phpcs:ignoreFile -- Test file
 namespace Jitesoft\Log\Tests\Loggers;
 
 use Carbon\Carbon;

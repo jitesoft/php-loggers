@@ -1,21 +1,10 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  LogLevelTraitTest.php - Part of the  project.
-
-  © - Jitesoft 2018
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// phpcs:ignoreFile -- Test file
 namespace Jitesoft\Log\Tests;
 
 use Jitesoft\Log\Traits\LogLevelTrait;
 use PHPUnit\Framework\TestCase;
 
-/**
- * LogLevelTraitTest
- * @author Johannes Tegnér <johannes@jitesoft.com>
- * @version 1.0.0
- *
- * Test for Jitesoft\Log\Traits\LogLevelTrait.
- */
 class LogLevelTraitTest extends TestCase {
 
     protected $testLogger;

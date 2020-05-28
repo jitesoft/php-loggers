@@ -1,19 +1,10 @@
 <?php
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  LogFormatterTraitTest.php - Part of the Logger project.
-
-  © - Jitesoft 2018
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// phpcs:ignoreFile -- Test file
 namespace Jitesoft\Log\Tests;
 
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use PHPUnit\Framework\TestCase;
 
-/**
- * LogFormatterTraitTest
- * @author Johannes Tegnér <johannes@jitesoft.com>
- * @version 1.0.0
- */
 class LogFormatterTraitTest extends TestCase {
 
     protected $testLogger;
