@@ -34,7 +34,7 @@ class StdLoggerTest extends TestCase {
                 $this->expectedFormat,
                 Carbon::getTestNow()->format($this->expectedTimeFormat),
                 'TESTLEVEL',
-                'Test without some words. And {nothing}!'
+                'Test without some words. And {nothing}!'.PHP_EOL
             ),
             StreamFilter::$output
         );
