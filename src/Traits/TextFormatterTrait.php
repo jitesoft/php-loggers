@@ -32,7 +32,7 @@ trait TextFormatterTrait {
             if (array_key_exists($out[1][$i], $context)) {
                 $message = str_replace(
                     $out[0][$i],
-                    $context[$out[1][$i]],
+                    (string)$context[$out[1][$i]],
                     $message
                 );
             }

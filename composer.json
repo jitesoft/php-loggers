@@ -37,7 +37,7 @@
     "scripts": {
         "test": [
             "phpunit --configuration ./phpunit.xml --coverage-text --colors=never",
-            "phpcs --report=summary --standard=./style.xml -p ./src"
+            "phpcs --report=summary --standard=./ruleset.xml -p ./src"
         ]
     }
 }
