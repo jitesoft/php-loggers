@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "psr/log": "^1.1.4",
-        "nesbot/carbon": "^2.48",
+        "nesbot/carbon": "^2.49",
         "php": "^7.4.2|>=8"
     },
     "require-dev": {
@@ -13,6 +13,9 @@
         "mikey179/vfsstream": "1.6.*",
         "php-mock/php-mock-phpunit": "2.6.*",
         "ext-pdo": "*"
+    },
+    "suggest": {
+        "ext-pdo": "Required to use the PDO Logger."
     },
     "license": "MIT",
     "authors": [
@@ -37,7 +40,7 @@
     "scripts": {
         "test": [
             "phpunit --configuration ./phpunit.xml --coverage-text --colors=never",
-            "phpcs --report=summary --standard=./style.xml -p ./src"
+            "phpcs --report=summary --standard=./ruleset.xml -p ./src"
         ]
     }
 }
