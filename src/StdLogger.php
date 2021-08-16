@@ -50,19 +50,9 @@ class StdLogger extends AbstractLogger {
         );
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param string $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
     protected function innerLog(string $level,
                                 string $message,
-                                array $context = array()): void {
-        $stream = null;
+                                array $context = []): void {
         if (in_array(
             $level,
             [

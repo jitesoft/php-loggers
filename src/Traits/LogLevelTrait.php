@@ -7,8 +7,6 @@ declare(strict_types=1);
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
 
-use Stringable;
-
 /**
  * Trait handling different log levels and helpers for loggers.
  *
@@ -56,15 +54,6 @@ trait LogLevelTrait {
         return ($intLevel >= $this->logLevel);
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed             $level   Log level to use.
-     * @param Stringable|string $message Message to log.
-     * @param array             $context Context data.
-     *
-     * @return void
-     */
     public function log($level, $message, array $context = array()): void {
         if (!$this->shouldLog($level)) {
             return;
@@ -75,9 +64,9 @@ trait LogLevelTrait {
     /**
      * Logs with an arbitrary level.
      *
-     * @param mixed  $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
+     * @param string         $level   Log level to use.
+     * @param string         $message Message to log.
+     * @param array|mixed[]  $context Context data.
      *
      * @return void
      */

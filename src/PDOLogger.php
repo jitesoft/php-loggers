@@ -39,7 +39,7 @@ class PDOLogger extends AbstractLogger {
     use TextFormatterTrait, LogLevelTrait;
 
     // phpcs:ignore
-    public const INSERT_STATEMENT = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
+    public const INSERT_STATEMENT = 'INSERT INTO log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';
 
     protected PDO $pdo;
 
@@ -52,15 +52,6 @@ class PDOLogger extends AbstractLogger {
         $this->pdo = $databaseConnection;
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed  $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
     protected function innerLog(string $level,
                                 string $message,
                                 array $context = array()): void {

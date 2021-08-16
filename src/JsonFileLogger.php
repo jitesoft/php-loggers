@@ -35,7 +35,7 @@ class JsonFileLogger extends AbstractLogger {
 
     protected function innerLog(string $level,
                                 string $message,
-                                array $context): void {
+                                array $context = []): void {
         file_put_contents(
             $this->file,
             $this->formatJson(
