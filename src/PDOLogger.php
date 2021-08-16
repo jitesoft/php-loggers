@@ -3,7 +3,7 @@ declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   DatabaseLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2020
+  © - Jitesoft 2021
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
@@ -11,8 +11,7 @@ use Carbon\Carbon;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use PDO;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerTrait;
+use Psr\Log\AbstractLogger;
 
 /**
  * A logger which outputs messages into a PDO instance using prepared statements.
@@ -34,9 +33,10 @@ use Psr\Log\LoggerTrait;
  * message - string
  * time    - string
  * </pre>
+ * @since 1.1.0
  */
-class PDOLogger implements LoggerInterface {
-    use TextFormatterTrait, LoggerTrait, LogLevelTrait;
+class PDOLogger extends AbstractLogger {
+    use TextFormatterTrait, LogLevelTrait;
 
     // phpcs:ignore
     public const INSERT_STATEMENT = 'INSERT into log_messages (`level`, `message`, `time`) VALUES (:level, :message, :time)';

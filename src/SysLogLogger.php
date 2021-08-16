@@ -3,17 +3,24 @@ declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   SysLogLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2020
+  © - Jitesoft 2021
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerTrait;
+use Psr\Log\AbstractLogger;
 
-class SysLogLogger implements LoggerInterface {
-    use TextFormatterTrait, LoggerTrait, LogLevelTrait;
+/**
+ * Logger which logs to a syslog server.
+ *
+ * Default facility is the LOG_USER facility with 'unknown' ident.
+ * Uses the php native syslog api.
+ *
+ * @since 2.0.0
+ */
+class SysLogLogger extends AbstractLogger {
+    use TextFormatterTrait, LogLevelTrait;
 
     private const LOG_PRIORITIES = [
         'debug'     => LOG_DEBUG,
@@ -33,7 +40,7 @@ class SysLogLogger implements LoggerInterface {
      * @param integer $facility Syslog facility.
      * @param string  $ident    App identity.
      */
-    public function __construct(int $option = LOG_CONS | LOG_ODELAY | LOG_PID,
+    public function __construct(int $option   = LOG_CONS | LOG_ODELAY | LOG_PID,
                                 int $facility = LOG_USER,
                                 string $ident = 'unknown') {
         openlog($ident, $option, $facility);

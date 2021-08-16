@@ -3,16 +3,24 @@ declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   MultiLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2020
+  © - Jitesoft 2021
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
 use Jitesoft\Log\Traits\LogLevelTrait;
+use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerTrait;
 
-class MultiLogger implements LoggerInterface {
-    use LoggerTrait, LogLevelTrait;
+/**
+ * A logger which acts as a wrapper around other loggers.
+ *
+ * This enables a single logger with many output formats.
+ * Have no loggers added by default.
+ *
+ * @since 2.0.1
+ */
+class MultiLogger extends AbstractLogger {
+    use LogLevelTrait;
 
     /** @var array|LoggerInterface[] */
     private array $loggers = [];

@@ -3,31 +3,14 @@ declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   NullLogger.php - Part of the php-logger project.
 
-  © - Jitesoft 2020
+  © - Jitesoft 2021
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerTrait;
-
 /**
- * A logger doing absolutely nothing, and its not even supposed to!
- *
+ * @deprecated Use the \Psr\Log\NullLogger instead.
+ * @see \Psr\Log\NullLogger
+ * @since 1.0.0 Deprecated in 3.0.0
  * @codeCoverageIgnore
  */
-class NullLogger implements LoggerInterface {
-    use LoggerTrait;
-
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed $level Log level of message.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
-    public function log($level, $message, array $context = array()): void {
-    }
-
-}
+class NullLogger extends \Psr\Log\NullLogger {}

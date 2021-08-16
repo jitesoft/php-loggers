@@ -3,19 +3,21 @@
     "description": "A collection of PSR-3 loggers.",
     "type": "library",
     "require": {
-        "psr/log": "^1.1.4",
-        "nesbot/carbon": "^2.49",
-        "php": "^7.4.2|>=8"
+        "psr/log": "~1.1.4",
+        "nesbot/carbon": "^2.51",
+        "php": ">=7.4.2|>=8"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",
         "phpunit/phpunit": "^9.5",
         "mikey179/vfsstream": "1.6.*",
         "php-mock/php-mock-phpunit": "2.6.*",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "ext-json": "*"
     },
     "suggest": {
-        "ext-pdo": "Required to use the PDO Logger."
+        "ext-pdo": "Required to use the PDO Logger.",
+        "ext-json": "Required for most loggers using json parsing."
     },
     "license": "MIT",
     "authors": [
@@ -41,6 +43,9 @@
         "test": [
             "phpunit --configuration ./phpunit.xml --coverage-text --colors=never",
             "phpcs --report=summary --standard=./ruleset.xml -p ./src"
+        ],
+        "lint": [
+            "phpcs --report=full --standard=./ruleset.xml -p ./src"
         ]
     }
 }
