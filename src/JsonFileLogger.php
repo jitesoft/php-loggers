@@ -22,7 +22,7 @@ use Psr\Log\AbstractLogger;
  * </pre>
  * The logger uses the file_put_contents function with the LOCK_EX flag upon writing to file.
  *
- * @since 3.0.0
+ * @since 2.3.0
  */
 class JsonFileLogger extends AbstractLogger {
     use TextFormatterTrait, LogLevelTrait, JsonFormatterTrait;

@@ -22,7 +22,7 @@ use Psr\Log\LogLevel;
  * { "severity": "error", "message": "Formatted message.", "context": { }, "time": "1977-04-22T06:00:00Z", "ts": 230533200 }
  * </pre>
  *
- * @since 3.0.0
+ * @since 2.3.0
  */
 class JsonLogger extends AbstractLogger {
     use TextFormatterTrait, LogLevelTrait, JsonFormatterTrait;
