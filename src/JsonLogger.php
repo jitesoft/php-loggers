@@ -43,7 +43,7 @@ class JsonLogger extends AbstractLogger {
 
     protected function innerLog(string $level,
                                 string $message,
-                                array $context): void {
+                                array $context = []): void {
         if (in_array(
             $level,
             [

@@ -49,7 +49,7 @@ class MultiLogger extends AbstractLogger {
      * @param LoggerInterface|string $logger Logger to remove.
      * @return boolean
      */
-    public function removeLogger($logger): bool {
+    public function removeLogger(LoggerInterface|string $logger): bool {
         $name = is_string($logger) ? $logger : get_class($logger);
         if (array_key_exists($name, $this->loggers)) {
             unset($this->loggers[$name]);
@@ -59,18 +59,9 @@ class MultiLogger extends AbstractLogger {
         return false;
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param string $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
     protected function innerLog(string $level,
                                 string $message,
-                                array $context = array()): void {
+                                array $context = []): void {
         foreach ($this->loggers as $logger) {
             $logger->log($level, $message, $context);
         }

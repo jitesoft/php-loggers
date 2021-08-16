@@ -21,10 +21,10 @@ trait JsonFormatterTrait {
         = JSON_INVALID_UTF8_SUBSTITUTE | JSON_BIGINT_AS_STRING;
 
     /**
-     * @param string $level
-     * @param string $formattedMessage
-     * @param Carbon $time
-     * @param array  $context
+     * @param string         $level
+     * @param string         $formattedMessage
+     * @param Carbon         $time
+     * @param array|mixed[]  $context
      * @return string
      */
     protected function formatJson(string $level,

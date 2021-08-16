@@ -3,10 +3,20 @@
 [![pipeline status](https://gitlab.com/jitesoft/open-source/php/loggers/badges/master/pipeline.svg)](https://gitlab.com/jitesoft/open-source/php/loggers/commits/master)
 [![coverage report](https://gitlab.com/jitesoft/open-source/php/loggers/badges/master/coverage.svg)](https://gitlab.com/jitesoft/open-source/php/loggers/commits/master)
 [![Back project](https://img.shields.io/badge/Open%20Collective-Tip%20the%20devs!-blue.svg)](https://opencollective.com/jitesoft-open-source)
-[![PHP-Version](https://img.shields.io/packagist/php-v/jitesoft/loggers.svg)](https://packagist.org/packages/jitesoft/loggers)
+[![PHP-Version](https://img.shields.io/packagist/php-v/jitesoft/loggers.svg)](https://packagist.org/packages/jitesoft/loggers) 
+
+[![Packagist PHP Version (2.x.x/dev-php-7)](https://img.shields.io/badge/v2.x-%3E%3D7.4.2%7C%3E%3D8-blue)](https://packagist.org/packages/jitesoft/loggers)
 
 This repository contains a set of loggers implementing the PSR-3 logger interface.  
 Pull-requests and feature requests welcome.
+
+## Php7 and Php8
+
+The `php-7` (or `dev-php-7`) branch is not actively maintained, while security patches might
+be applied to it.  
+The v2.x tags will be used for php7 and no new features will be applied.  
+From version 3.0.0 and forward, the package will use the `psr/log >= 3.0.0` package,
+which requires php8 or over, as will this package.
 
 ## Implemented loggers
 
@@ -24,6 +34,26 @@ in the instance class.
 The FileLogger is probably the most useful logger. All it does is to print the output to a file of choice 
 (defaults to `/tmp/log.txt`).  
 It's (as with `StdLogger`) possible to change the format of the output and of the timestamp.
+
+### `JsonLogger`
+
+The JsonLogger is a StdLogger which logs a json object instead of the standard
+formatted string.  
+The json object looks as the following:
+
+```json
+{ "severity": "error", "message": "Formatted message.", "context": { }, "time": "1977-04-22T06:00:00Z", "ts": 230533200 }
+```
+
+### `JsonFileLogger`
+
+The JsonFileLogger is a FileLogger which logs a json object instead of
+the standard formatted string.
+Each log entry will be a new object, the following format is used:
+
+```json
+{ "severity": "error", "message": "Formatted message.", "context": { }, "time": "1977-04-22T06:00:00Z", "ts": 230533200 }
+```
 
 ### `PDOLogger`
 
@@ -69,6 +99,8 @@ array:  context
 ```
 
 ### `NullLogger`
+
+_Deprecated since 2.3.0, removed in 3.0.0_
 
 Null logger does absolutely nothing!
 

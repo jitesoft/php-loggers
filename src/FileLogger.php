@@ -46,18 +46,9 @@ class FileLogger extends AbstractLogger {
         $this->timeFormat = $timeFormat;
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param mixed  $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
     protected function innerLog(string $level,
                                 string $message,
-                                array $context = array()): void {
+                                array $context = []): void {
         file_put_contents(
             $this->file,
             $this->format(

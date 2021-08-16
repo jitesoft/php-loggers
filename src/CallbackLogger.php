@@ -35,27 +35,18 @@ class CallbackLogger extends AbstractLogger {
      *
      * @param callable $callback Callback to call when logger is invoked.
      *                           Callback is expected to look as the following:
-     *                           function (string $level,
-     *                                     string $formattedMessage,
-     *                                     string $message,
-     *                                     array $context): void
+     *                           function (string            $level,
+     *                                     string            $formattedMessage,
+     *                                     string|Stringable $message,
+     *                                     array             $context): void
      */
     public function __construct(callable $callback) {
         $this->callback = $callback;
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param string $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
     protected function innerLog(string $level,
                                 string $message,
-                                array $context = array()): void {
+                                array $context = []): void {
         call_user_func(
             $this->callback,
             $level,

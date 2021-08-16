@@ -46,22 +46,10 @@ class SysLogLogger extends AbstractLogger {
         openlog($ident, $option, $facility);
     }
 
-    /**
-     * Destructor.
-     */
     public function __destruct() {
         closelog();
     }
 
-    /**
-     * Logs with an arbitrary level.
-     *
-     * @param string $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
-     *
-     * @return void
-     */
     protected function innerLog(string $level,
                                 string $message,
                                 array $context = array()): void {

@@ -4,10 +4,10 @@ namespace Jitesoft\Log\Tests\Loggers;
 
 use Jitesoft\Log\CallbackLogger;
 use Jitesoft\Log\MultiLogger;
-use Jitesoft\Log\NullLogger;
 use Jitesoft\Log\StdLogger;
 use Jitesoft\Log\SysLogLogger;
 use PHPUnit\Framework\TestCase;
+use Psr\Log\NullLogger;
 use ReflectionClass;
 
 class MultiLoggerTest extends TestCase {
