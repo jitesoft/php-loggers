@@ -3,14 +3,16 @@ declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   LogLevelTrait.php - Part of the Loggers project.
 
-  © - Jitesoft 2020
+  © - Jitesoft 2021
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
 
+use Stringable;
+
 /**
- * LogLevelTrait
- * @author Johannes Tegnér <johannes@jitesoft.com>
- * @version 1.0.0
+ * Trait handling different log levels and helpers for loggers.
+ *
+ * @since 1.0.0
  */
 trait LogLevelTrait {
     protected int $logLevel    = 0;
@@ -50,16 +52,16 @@ trait LogLevelTrait {
             return true; // For custom log levels.
         }
 
-        $level = $this->logLevels[$level];
-        return ($level >= $this->logLevel);
+        $intLevel = $this->logLevels[$level];
+        return ($intLevel >= $this->logLevel);
     }
 
     /**
      * Logs with an arbitrary level.
      *
-     * @param mixed  $level   Log level to use.
-     * @param string $message Message to log.
-     * @param array  $context Context data.
+     * @param mixed             $level   Log level to use.
+     * @param Stringable|string $message Message to log.
+     * @param array             $context Context data.
      *
      * @return void
      */

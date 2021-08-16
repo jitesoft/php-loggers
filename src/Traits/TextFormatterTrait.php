@@ -3,15 +3,17 @@ declare(strict_types=1);
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
   TextFormatterTrait.php - Part of the php-logger project.
 
-  © - Jitesoft 2020
+  © - Jitesoft 2021
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log\Traits;
 
 /**
- * Trait TextFormatterTrait
- * @package Jitesoft\Log\Traits
- *
  * Trait implementing a simple formatting algorithm for logger text templates.
+ *
+ * Replaces all values in brackets with its corresponding value in the context array
+ * and returns the formatted string.
+ *
+ * @since 1.0.0
  */
 trait TextFormatterTrait {
 
