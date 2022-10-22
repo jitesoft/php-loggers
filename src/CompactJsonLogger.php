@@ -16,7 +16,7 @@ use Psr\Log\LogLevel;
  * {"@t":"DateTime as ISO8601 String","@l":(int)level,"@m":"Formatted message","@mt":"Message template","@r":(array)context}
  * </pre>
  *
- * @since 3.1.0
+ * @since 4.0.0
  */
 class CompactJsonLogger extends AbstractLogger {
     use CompactJsonFormatterTrait;

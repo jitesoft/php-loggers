@@ -12,16 +12,15 @@ Pull-requests and feature requests welcome.
 
 ## Php7 and Php8
 
-The `php-7` (or `dev-php-7`) branch is not actively maintained, while security patches might
-be applied to it.  
-The v2.x tags will be used for php7 and no new features will be applied.  
-From version 3.0.0 and forward, the package will use the `psr/log >= 3.0.0` package,
-which requires php8 or over, as will this package.
+v2.x tags requires php 7+  
+v3.x tags requires php 8+  
+v4.x tags requires php 8.1+  
+
+Only latest (currently php8.1+) is maintained.
 
 ## Implemented loggers
 
-All loggers (with the exception of the NullLogger) are able to set which logging levels they should actually log on
-via the `setLogLevel` method.
+All loggers are able to set which logging levels they should actually log on via the `setLogLevel` method.
 
 ### `StdLogger`
 
@@ -98,12 +97,6 @@ string: text (message without context placeholders replaced)
 array:  context
 ```
 
-### `NullLogger`
-
-_Deprecated since 2.3.0, removed in 3.0.0_
-
-Null logger does absolutely nothing!
-
 ### `CompactJsonLogger`
 
 Logger using (Compact Log Event Format JSON)[https://clef-json.org/] output to streams.
@@ -111,7 +104,7 @@ Logger using (Compact Log Event Format JSON)[https://clef-json.org/] output to s
 Output format:
 
 ```json
-{"@t":"DateTime as ISO8601 String","@l":(int)level,"@m":"Formatted message","@mt":"Message template","@r": {"context-key": "context-value"}}
+{"@t":"DateTime as ISO8601 String","@l":"(int)level","@m":"Formatted message","@mt":"Message template","@r": {"context-key": "context-value"}}
 ```
 
 ### `CompactJsonFileLogger`
@@ -119,7 +112,7 @@ Output format:
 Logger using (Compact Log Event Format JSON)[https://clef-json.org/] output to file.
 
 ```json
-{"@t":"DateTime as ISO8601 String","@l":(int)level,"@m":"Formatted message","@mt":"Message template","@r": {"context-key": "context-value"}}
+{"@t":"DateTime as ISO8601 String","@l":"(int)level","@m":"Formatted message","@mt":"Message template","@r": {"context-key": "context-value"}}
 ```
 
 ----

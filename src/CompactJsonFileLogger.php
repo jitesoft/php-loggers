@@ -13,7 +13,7 @@ use Carbon\Carbon;
  * </pre>
  * The logger uses the file_put_contents function with the LOCK_EX flag upon writing to file.
  *
- * @since 3.1.0
+ * @since 4.0.0
  */
 class CompactJsonFileLogger extends CompactJsonLogger {
     protected string $file;
