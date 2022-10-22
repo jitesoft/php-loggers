@@ -5,7 +5,7 @@
     "require": {
         "psr/log": ">=3.0.0",
         "nesbot/carbon": "^2.61",
-        "php": ">=8"
+        "php": ">=8.1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7",
