@@ -104,6 +104,24 @@ _Deprecated since 2.3.0, removed in 3.0.0_
 
 Null logger does absolutely nothing!
 
+### `CompactJsonLogger`
+
+Logger using (Compact Log Event Format JSON)[https://clef-json.org/] output to streams.
+
+Output format:
+
+```json
+{"@t":"DateTime as ISO8601 String","@l":(int)level,"@m":"Formatted message","@mt":"Message template","@r": {"context-key": "context-value"}}
+```
+
+### `CompactJsonFileLogger`
+
+Logger using (Compact Log Event Format JSON)[https://clef-json.org/] output to file.
+
+```json
+{"@t":"DateTime as ISO8601 String","@l":(int)level,"@m":"Formatted message","@mt":"Message template","@r": {"context-key": "context-value"}}
+```
+
 ----
 
 License
