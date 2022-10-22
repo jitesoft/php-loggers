@@ -6,7 +6,7 @@ class StreamFilter extends \php_user_filter {
 
     public static $output;
 
-    public function filter($in, $out, &$consumed, $closing) {
+    public function filter($in, $out, &$consumed, bool $closing): int {
         self::$output = '';
         while ($bucket = stream_bucket_make_writeable($in)) {
             self::$output .= $bucket->data;
