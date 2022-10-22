@@ -1,5 +1,4 @@
 <?php
-
 namespace Jitesoft\Log;
 
 use Carbon\Carbon;

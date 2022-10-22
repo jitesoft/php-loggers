@@ -10,7 +10,7 @@ use Psr\Log\LoggerInterface;
 
 class CompactJsonLoggerTest extends TestCase {
     protected LoggerInterface $logger;
-    protected string $expectedFormat     = '{"@t":"%s","@l":6,"@m":"%s","@mt":"%s","@r":%s}';
+    protected string $expectedFormat     = '{"@t":"%s","@l":"Information","@m":"%s","@mt":"%s","@r":%s}';
 
     protected function setUp(): void {
         parent::setUp();

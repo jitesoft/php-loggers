@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 class CompactJsonFileLoggerTest extends TestCase {
     protected vfsStreamDirectory $fs;
     protected CompactJsonFileLogger $logger;
-    protected string $expectedFormat     = '{"@t":"%s","@l":6,"@m":"%s","@mt":"%s","@r":%s}';
+    protected string $expectedFormat     = '{"@t":"%s","@l":"Information","@m":"%s","@mt":"%s","@r":%s}';
 
     protected function setUp(): void {
         parent::setUp();

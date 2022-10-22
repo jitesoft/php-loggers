@@ -1,23 +1,21 @@
 <?php
-
 namespace Jitesoft\Log\Traits;
 
 use Carbon\Carbon;
-use Exception;
 
 trait CompactJsonFormatterTrait {
     public static int $jsonParams
         = JSON_INVALID_UTF8_SUBSTITUTE | JSON_BIGINT_AS_STRING;
 
     private static $logPriorities = [
-        'debug'     => LOG_DEBUG,
-        'notice'    => LOG_NOTICE,
-        'info'      => LOG_INFO,
-        'warning'   => LOG_WARNING,
-        'error'     => LOG_ERR,
-        'critical'  => LOG_CRIT,
-        'alert'     => LOG_ALERT,
-        'emergency' => LOG_EMERG
+        'debug'     => 'Verbose',
+        'notice'    => 'Debug',
+        'info'      => 'Information',
+        'warning'   => 'Warning',
+        'error'     => 'Error',
+        'critical'  => 'Error',
+        'alert'     => 'Fatal',
+        'emergency' => 'Fatal'
     ];
 
     /**
