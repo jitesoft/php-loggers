@@ -3,25 +3,25 @@
 namespace Jitesoft\Log\Tests\Loggers;
 
 use Carbon\Carbon;
-use Jitesoft\Log\CompactJsonLogger;
-use Jitesoft\Log\Tests\StreamFilter;
+use Jitesoft\Log\CompactJsonFileLogger;
+use org\bovigo\vfs\vfsStream;
+use org\bovigo\vfs\vfsStreamDirectory;
 use PHPUnit\Framework\TestCase;
-use Psr\Log\LoggerInterface;
 
-class CompactJsonLoggerTest extends TestCase {
-    protected LoggerInterface $logger;
+class CompactJsonFileLoggerTest extends TestCase {
+    protected vfsStreamDirectory $fs;
+    protected CompactJsonFileLogger $logger;
     protected string $expectedFormat     = '{"@t":"%s","@l":6,"@m":"%s","@mt":"%s","@r":%s}';
 
     protected function setUp(): void {
         parent::setUp();
 
-        stream_filter_register('catcher', StreamFilter::class);
+        $this->fs = vfsStream::setUp('rootDir');
         Carbon::setTestNow(Carbon::createFromTimestamp(1513976746));
-        $this->logger = new CompactJsonLogger();
+        $this->logger = new CompactJsonFileLogger($this->fs->url() . '/log.clef');
     }
 
     public function testLog(): void {
-        stream_filter_prepend(STDOUT, 'catcher');
         $this->logger->log(
             'TestLevel',
             'Test {with} some {params}. And {nothing}!',
@@ -34,8 +34,8 @@ class CompactJsonLoggerTest extends TestCase {
                 'Test without some words. And {nothing}!',
                 'Test {with} some {params}. And {nothing}!',
                 json_encode([ 'with' => 'without', 'params' => 'words'])
-            ),
-            StreamFilter::$output
+            ) . PHP_EOL,
+            file_get_contents($this->fs->url() . '/log.clef')
         );
     }
 

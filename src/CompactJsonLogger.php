@@ -8,6 +8,16 @@ use Jitesoft\Log\Traits\TextFormatterTrait;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
+/**
+ * A logger which outputs compact json log messages to streams.
+ *
+ * Each log entry is printed on a new line as a json object with the following format:
+ * <pre>
+ * {"@t":"DateTime as ISO8601 String","@l":(int)level,"@m":"Formatted message","@mt":"Message template","@r":(array)context}
+ * </pre>
+ *
+ * @since 3.1.0
+ */
 class CompactJsonLogger extends AbstractLogger {
     use CompactJsonFormatterTrait;
     use TextFormatterTrait;
@@ -38,7 +48,7 @@ class CompactJsonLogger extends AbstractLogger {
         $this->innerLog($level, $message, $context);
     }
 
-    public function innerLog($level, $message, array $context = []): void {
+    protected function innerLog($level, $message, array $context = []): void {
         $formattedMessage = $this->format($message, $context);
         $clef             = $this->formatClef(
             $level,
