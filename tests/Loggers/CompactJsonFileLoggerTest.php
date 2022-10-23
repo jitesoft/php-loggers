@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 class CompactJsonFileLoggerTest extends TestCase {
     protected vfsStreamDirectory $fs;
     protected CompactJsonFileLogger $logger;
-    protected string $expectedFormat     = '{"@t":"%s","@l":"Information","@m":"%s","@mt":"%s","@r":%s}';
+    protected string $expectedFormat     = '{"@t":"%s","@l":"Information","@m":"%s","@mt":"%s","@r":%s,%s}';
 
     protected function setUp(): void {
         parent::setUp();
@@ -33,7 +33,8 @@ class CompactJsonFileLoggerTest extends TestCase {
                 Carbon::getTestNow()->toIso8601String(),
                 'Test without some words. And {nothing}!',
                 'Test {with} some {params}. And {nothing}!',
-                json_encode([ 'with' => 'without', 'params' => 'words'])
+                json_encode([ 'with' => 'without', 'params' => 'words']),
+                '"_with":"without","_params":"words"'
             ) . PHP_EOL,
             file_get_contents($this->fs->url() . '/log.clef')
         );

@@ -23,10 +23,13 @@ class CompactJsonLogger extends AbstractLogger {
     use TextFormatterTrait;
     use LogLevelTrait;
 
-    private $stdout;
-    private $stderr;
+    protected string $extraPrefix;
+    private          $stdout;
+    private          $stderr;
 
-    public function __construct($errorStream = null, $outStream = null) {
+    public function __construct($errorStream = null,
+                                $outStream = null,
+                                string $extraPrefix = '_') {
         $this->stderr = $errorStream ?? defined('STDERR') ? STDERR : fopen(
             'php://stderr',
             'wb'
@@ -35,6 +38,8 @@ class CompactJsonLogger extends AbstractLogger {
             'php://stdout',
             'wb'
         );
+
+        $this->extraPrefix = $extraPrefix;
     }
 
     public function log($level, $message, array $context = []): void {
@@ -55,7 +60,8 @@ class CompactJsonLogger extends AbstractLogger {
             $formattedMessage,
             $message,
             Carbon::now(),
-            $context
+            $context,
+            $this->extraPrefix
         );
 
         if (in_array(

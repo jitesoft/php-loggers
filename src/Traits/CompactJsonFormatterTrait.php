@@ -29,7 +29,8 @@ trait CompactJsonFormatterTrait {
         string $formattedMessage,
         string $messageTemplate,
         Carbon $time,
-        array $context = []): string {
+        array $context = [],
+        string $extraPrefix = '_'): string {
         $arr = [
             '@t'  => $time->toIso8601String(),
             '@l'  => self::$logPriorities[$level],
@@ -37,6 +38,10 @@ trait CompactJsonFormatterTrait {
             '@mt' => $messageTemplate,
             '@r'  => $context,
         ];
+
+        foreach ($context as $key => $value) {
+            $arr[$extraPrefix . $key] = $value;
+        }
 
         return json_encode($arr, self::$jsonParams, 4);
     }
