@@ -5,7 +5,6 @@ use Carbon\Carbon;
 use Jitesoft\Log\Traits\CompactJsonFormatterTrait;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
-use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
 /**
@@ -18,13 +17,10 @@ use Psr\Log\LogLevel;
  *
  * @since 4.0.0
  */
-class CompactJsonLogger extends AbstractLogger {
+class CompactJsonLogger extends StreamLogger {
     use CompactJsonFormatterTrait;
     use TextFormatterTrait;
     use LogLevelTrait;
-
-    private          $stdout;
-    private          $stderr;
 
     /**
      * Log to streams with compact json (CLEF - Compact Log Event Format).
@@ -33,14 +29,7 @@ class CompactJsonLogger extends AbstractLogger {
      * @param $outStream ?resource   Stream to log to. Defaults to stdout.
      */
     public function __construct($errorStream = null, $outStream = null) {
-        $this->stderr = $errorStream ?? (defined('STDERR') ? STDERR : fopen(
-            'php://stderr',
-            'wb'
-        ));
-        $this->stdout = $outStream ?? (defined('STDOUT') ? STDOUT : fopen(
-            'php://stdout',
-            'wb'
-        ));
+        parent::__construct($errorStream, $outStream);
     }
 
     protected function innerLog($level, $message, array $context = []): void {

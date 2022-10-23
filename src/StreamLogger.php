@@ -13,7 +13,7 @@ abstract class StreamLogger extends AbstractLogger {
      * @param $errorStream ?resource Stream to log errors to. Defaults to stderr.
      * @param $outStream ?resource   Stream to log to. Defaults to stdout.
      */
-    public function __construct($errorStream = null,
+    protected function __construct($errorStream = null,
                                 $outStream = null) {
         $this->stderr = $errorStream ?? (defined('STDERR') ? STDERR : fopen(
             'php://stderr',

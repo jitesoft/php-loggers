@@ -11,7 +11,6 @@ use Carbon\Carbon;
 use Jitesoft\Log\Traits\JsonFormatterTrait;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
-use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
 /**
@@ -24,11 +23,8 @@ use Psr\Log\LogLevel;
  *
  * @since 2.3.0
  */
-class JsonLogger extends AbstractLogger {
+class JsonLogger extends StreamLogger {
     use TextFormatterTrait, LogLevelTrait, JsonFormatterTrait;
-
-    private $stdout;
-    private $stderr;
 
     /**
      * Log JSON formatted strings to stream.
@@ -37,14 +33,7 @@ class JsonLogger extends AbstractLogger {
      * @param $outStream ?resource   Stream to log to. Defaults to stdout.
      */
     public function __construct($errorStream = null, $outStream = null) {
-        $this->stderr = $errorStream ?? (defined('STDERR') ? STDERR : fopen(
-            'php://stderr',
-            'wb'
-        ));
-        $this->stdout = $outStream ?? (defined('STDOUT') ? STDOUT : fopen(
-            'php://stdout',
-            'wb'
-        ));
+        parent::__construct($errorStream, $outStream);
     }
 
     protected function innerLog(string $level,
