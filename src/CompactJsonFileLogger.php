@@ -16,6 +16,7 @@ use Carbon\Carbon;
  */
 class CompactJsonFileLogger extends CompactJsonLogger {
     protected string $file;
+    protected string $extraPrefix;
 
     /**
      * @param string $file
@@ -23,8 +24,10 @@ class CompactJsonFileLogger extends CompactJsonLogger {
      * @noinspection MagicMethodsValidityInspection
      * @noinspection PhpMissingParentConstructorInspection
      */
-    public function __construct(string $file = '/tmp/log.clef') {
-        $this->file = $file;
+    public function __construct(string $file = '/tmp/log.clef',
+                                string $extraPrefix = '_') {
+        $this->file        = $file;
+        $this->extraPrefix = $extraPrefix;
     }
 
     protected function innerLog($level, $message, array $context = []): void {
@@ -34,7 +37,8 @@ class CompactJsonFileLogger extends CompactJsonLogger {
             $formattedMessage,
             $message,
             Carbon::now(),
-            $context
+            $context,
+            $this->extraPrefix
         );
 
         file_put_contents(

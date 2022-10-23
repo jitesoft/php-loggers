@@ -10,7 +10,7 @@ use Psr\Log\LoggerInterface;
 
 class CompactJsonLoggerTest extends TestCase {
     protected LoggerInterface $logger;
-    protected string $expectedFormat     = '{"@t":"%s","@l":"Information","@m":"%s","@mt":"%s","@r":%s}';
+    protected string $expectedFormat     = '{"@t":"%s","@l":"Information","@m":"%s","@mt":"%s","@r":%s,%s}';
 
     protected function setUp(): void {
         parent::setUp();
@@ -33,7 +33,8 @@ class CompactJsonLoggerTest extends TestCase {
                 Carbon::getTestNow()->toIso8601String(),
                 'Test without some words. And {nothing}!',
                 'Test {with} some {params}. And {nothing}!',
-                json_encode([ 'with' => 'without', 'params' => 'words'])
+                json_encode([ 'with' => 'without', 'params' => 'words']),
+                '"_with":"without","_params":"words"'
             ),
             StreamFilter::$output
         );
