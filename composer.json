@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "psr/log": ">=3.0.0",
-        "nesbot/carbon": "^2.61",
+        "nesbot/carbon": "^2.62",
         "php": ">=8.1"
     },
     "require-dev": {
