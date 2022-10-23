@@ -6,6 +6,9 @@
 [![PHP-Version](https://img.shields.io/packagist/php-v/jitesoft/loggers.svg)](https://packagist.org/packages/jitesoft/loggers) 
 
 [![Packagist PHP Version (2.x.x/dev-php-7)](https://img.shields.io/badge/v2.x-%3E%3D7.4.2%7C%3E%3D8-blue)](https://packagist.org/packages/jitesoft/loggers)
+[![Packagist PHP Version (3.x.x/dev-php-8)](https://img.shields.io/badge/v3.x-%3E%3D8-blue)](https://packagist.org/packages/jitesoft/loggers)
+[![Packagist PHP Version (4.x.x/dev-master)](https://img.shields.io/badge/v4.x-%3E%3D8.1-blue)](https://packagist.org/packages/jitesoft/loggers)
+
 
 This repository contains a set of loggers implementing the PSR-3 logger interface.  
 Pull-requests and feature requests welcome.
