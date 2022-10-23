@@ -20,8 +20,8 @@ trait TextFormatterTrait {
     /**
      * Replaces placeholders with context values.
      *
-     * @param string        $message Message to format.
-     * @param array|mixed[] $context Context data.
+     * @param string $message Message to format.
+     * @param array  $context Context data.
      *
      * @return string
      */

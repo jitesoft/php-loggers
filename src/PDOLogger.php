@@ -12,6 +12,7 @@ use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use PDO;
 use Psr\Log\AbstractLogger;
+use Psr\Log\LogLevel;
 
 /**
  * A logger which outputs messages into a PDO instance using prepared statements.

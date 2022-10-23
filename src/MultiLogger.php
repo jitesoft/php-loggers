@@ -25,6 +25,11 @@ class MultiLogger extends AbstractLogger {
     /** @var array|LoggerInterface[] */
     private array $loggers = [];
 
+    /**
+     * Wrapper to log to multiple loggers in one go.
+     *
+     * @param array $loggers
+     */
     public function __construct(array $loggers = []) {
         foreach ($loggers as $logger) {
             $this->addLogger($logger);

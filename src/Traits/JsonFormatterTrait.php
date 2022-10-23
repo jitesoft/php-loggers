@@ -16,17 +16,32 @@ use Carbon\Carbon;
  * @since 2.3.0
  */
 trait JsonFormatterTrait {
-
-    public static int $jsonParams
+    private static int $jsonParams
         = JSON_INVALID_UTF8_SUBSTITUTE | JSON_BIGINT_AS_STRING;
 
     /**
-     * @param string         $level
-     * @param string         $formattedMessage
-     * @param Carbon         $time
-     * @param array|mixed[]  $context
-     * @return string
+     * Set json params used when internally converting log record from array  to json.
+     * Defaults to JSON_INVALID_UTF8_SUBSTITUTE | JSON_BIGINT_AS_STRING
+     *
+     * @param int $params Json parameters to use in conversion.
+     * Bitmask consisting of <b>JSON_HEX_QUOT</b>,
+     * <b>JSON_HEX_TAG</b>,
+     * <b>JSON_HEX_AMP</b>,
+     * <b>JSON_HEX_APOS</b>,
+     * <b>JSON_NUMERIC_CHECK</b>,
+     * <b>JSON_PRETTY_PRINT</b>,
+     * <b>JSON_UNESCAPED_SLASHES</b>,
+     * <b>JSON_FORCE_OBJECT</b>,
+     * <b>JSON_UNESCAPED_UNICODE</b>.
+     * <b>JSON_THROW_ON_ERROR</b> The behaviour of these
+     * constants is described on
+     * the JSON constants page.
+     * @return void
      */
+    public static function setJsonParams(int $params): void {
+        self::$jsonParams = $params;
+    }
+
     protected function formatJson(string $level,
                                   string $formattedMessage,
                                   Carbon $time,

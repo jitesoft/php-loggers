@@ -2,6 +2,10 @@
 namespace Jitesoft\Log;
 
 use Carbon\Carbon;
+use Jitesoft\Log\Traits\CompactJsonFormatterTrait;
+use Jitesoft\Log\Traits\LogLevelTrait;
+use Jitesoft\Log\Traits\TextFormatterTrait;
+use Psr\Log\AbstractLogger;
 
 /**
  * A logger which outputs compact json log messages to a file without rotation.
@@ -14,31 +18,34 @@ use Carbon\Carbon;
  *
  * @since 4.0.0
  */
-class CompactJsonFileLogger extends CompactJsonLogger {
+class CompactJsonFileLogger extends AbstractLogger {
+    use CompactJsonFormatterTrait;
+    use TextFormatterTrait;
+    use LogLevelTrait;
+
     protected string $file;
-    protected string $extraPrefix;
 
     /**
-     * @param string $file
+     * Log to file with compact json (CLEF - Compact Log Event Format).
      *
-     * @noinspection MagicMethodsValidityInspection
-     * @noinspection PhpMissingParentConstructorInspection
+     * @param string $file File to write to.
      */
-    public function __construct(string $file = '/tmp/log.clef',
-                                string $extraPrefix = '_') {
-        $this->file        = $file;
-        $this->extraPrefix = $extraPrefix;
+    public function __construct(string $file = '/tmp/log.clef') {
+        $this->file = $file;
     }
 
     protected function innerLog($level, $message, array $context = []): void {
+        if (!array_key_exists($level, $this->logLevels)) {
+            $level = 'info';
+        }
+
         $formattedMessage = $this->format($message, $context);
         $clef             = $this->formatClef(
             $level,
             $formattedMessage,
             $message,
             Carbon::now(),
-            $context,
-            $this->extraPrefix
+            $context
         );
 
         file_put_contents(

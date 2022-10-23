@@ -23,45 +23,38 @@ class CompactJsonLogger extends AbstractLogger {
     use TextFormatterTrait;
     use LogLevelTrait;
 
-    protected string $extraPrefix;
     private          $stdout;
     private          $stderr;
 
-    public function __construct($errorStream = null,
-                                $outStream = null,
-                                string $extraPrefix = '_') {
-        $this->stderr = $errorStream ?? defined('STDERR') ? STDERR : fopen(
+    /**
+     * Log to streams with compact json (CLEF - Compact Log Event Format).
+     *
+     * @param $errorStream ?resource Stream to log errors to. Defaults to stderr.
+     * @param $outStream ?resource   Stream to log to. Defaults to stdout.
+     */
+    public function __construct($errorStream = null, $outStream = null) {
+        $this->stderr = $errorStream ?? (defined('STDERR') ? STDERR : fopen(
             'php://stderr',
             'wb'
-        );
-        $this->stdout = $outStream ?? defined('STDOUT') ? STDOUT : fopen(
+        ));
+        $this->stdout = $outStream ?? (defined('STDOUT') ? STDOUT : fopen(
             'php://stdout',
             'wb'
-        );
-
-        $this->extraPrefix = $extraPrefix;
+        ));
     }
 
-    public function log($level, $message, array $context = []): void {
+    protected function innerLog($level, $message, array $context = []): void {
         if (!array_key_exists($level, $this->logLevels)) {
             $level = 'info';
         }
 
-        if (!$this->shouldLog($level)) {
-            return;
-        }
-        $this->innerLog($level, $message, $context);
-    }
-
-    protected function innerLog($level, $message, array $context = []): void {
         $formattedMessage = $this->format($message, $context);
         $clef             = $this->formatClef(
             $level,
             $formattedMessage,
             $message,
             Carbon::now(),
-            $context,
-            $this->extraPrefix
+            $context
         );
 
         if (in_array(

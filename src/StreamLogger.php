@@ -1,42 +1,33 @@
 <?php
-declare(strict_types=1);
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-  JsonLogger.php - Part of the php-logger project.
-
-  © - Jitesoft 2021
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 namespace Jitesoft\Log;
 
 use Carbon\Carbon;
-use Jitesoft\Log\Traits\JsonFormatterTrait;
 use Jitesoft\Log\Traits\LogLevelTrait;
 use Jitesoft\Log\Traits\TextFormatterTrait;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LogLevel;
 
-/**
- * A logger which outputs json formatted messages to stdout and stderr.
- *
- * The following logging format is used:
- * <pre>
- * { "severity": "error", "message": "Formatted message.", "context": { }, "time": "1977-04-22T06:00:00Z", "ts": 230533200 }
- * </pre>
- *
- * @since 2.3.0
- */
-class JsonLogger extends AbstractLogger {
-    use TextFormatterTrait, LogLevelTrait, JsonFormatterTrait;
+class StreamLogger extends AbstractLogger {
+    use TextFormatterTrait, LogLevelTrait;
 
-    private $stdout;
-    private $stderr;
+    public const DEFAULT_FORMAT      = '[%s] %s: %s' . PHP_EOL;
+    public const DEFAULT_TIME_FORMAT = 'H:i:s.v';
+
+    protected string $format;
+    protected string $timeFormat;
+    protected $stdout;
+    protected $stderr;
 
     /**
-     * Log JSON formatted strings to stream.
+     * Log to streams.
      *
      * @param $errorStream ?resource Stream to log errors to. Defaults to stderr.
      * @param $outStream ?resource   Stream to log to. Defaults to stdout.
      */
-    public function __construct($errorStream = null, $outStream = null) {
+    public function __construct(string $format = self::DEFAULT_FORMAT,
+                                string $timeFormat = self::DEFAULT_TIME_FORMAT,
+                                $errorStream = null,
+                                $outStream = null) {
         $this->stderr = $errorStream ?? (defined('STDERR') ? STDERR : fopen(
             'php://stderr',
             'wb'
@@ -45,6 +36,9 @@ class JsonLogger extends AbstractLogger {
             'php://stdout',
             'wb'
         ));
+
+        $this->format     = $format;
+        $this->timeFormat = $timeFormat;
     }
 
     protected function innerLog(string $level,
@@ -56,7 +50,7 @@ class JsonLogger extends AbstractLogger {
                 LogLevel::EMERGENCY,
                 LogLevel::CRITICAL,
                 LogLevel::ALERT,
-                LogLevel::ERROR,
+                LogLevel::ERROR
             ],
             true
         )
@@ -68,10 +62,13 @@ class JsonLogger extends AbstractLogger {
 
         fwrite(
             $stream,
-            $this->formatJson(
-                $level,
-                $this->format($message, $context),
-                Carbon::now(),
+            $this->format(
+                sprintf(
+                    $this->format,
+                    Carbon::now()->format($this->timeFormat),
+                    strtoupper($level),
+                    $message
+                ),
                 $context
             )
         );

@@ -54,6 +54,9 @@ trait LogLevelTrait {
         return ($intLevel >= $this->logLevel);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function log($level, $message, array $context = array()): void {
         if (!$this->shouldLog($level)) {
             return;
@@ -64,9 +67,9 @@ trait LogLevelTrait {
     /**
      * Logs with an arbitrary level.
      *
-     * @param string         $level   Log level to use.
-     * @param string         $message Message to log.
-     * @param array|mixed[]  $context Context data.
+     * @param string $level   Log level to use.
+     * @param string $message Message to log.
+     * @param array  $context Context data.
      *
      * @return void
      */
